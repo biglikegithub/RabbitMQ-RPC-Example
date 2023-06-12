@@ -55,16 +55,31 @@ class RabbitMQClient {
       this.consumer.consumeMessages();
 
       this.isInitialized = true;
+
+      this.connection.on("close", ()=> {
+        console.log("connection close")
+        this.isInitialized = false;
+      })
+
+      this.connection.on("error", (err)=> {
+        this.isInitialized = false;
+        console.log("rabbit client error: ", err)
+      })
+
     } catch (error) {
       console.log("rabbitmq error...", error);
     }
   }
   async produce(data: any) {
     if (!this.isInitialized) {
+      console.log("initialized")
       await this.initialize();
     }
     return await this.producer.produceMessages(data);
   }
+
+  
+  
 }
 
 export default RabbitMQClient.getInstance();
