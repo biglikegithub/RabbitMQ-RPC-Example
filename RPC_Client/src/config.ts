@@ -1,6 +1,6 @@
 export default {
   rabbitMQ: {
-    url: "amqp://parking:Parking$123@103.236.194.100:5600/parkingvh",
+    url: "amqp://localhost",
     queues: {
       rpcQueue: "rpc_queue",
     },
