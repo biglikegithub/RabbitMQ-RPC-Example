@@ -8,8 +8,7 @@ export default class Producer {
   constructor(
     private channel: Channel,
     private replyQueueName: string,
-    private eventEmitter: EventEmitter,
-    
+    private eventEmitter: EventEmitter    
   ) {}
 
   async produceMessages(data: any) {
@@ -33,10 +32,8 @@ export default class Producer {
     );
 
     let timer =  setTimeout(() => {
-      console.log("removed emmit")
-      
-      if (flag) {
-        
+      console.log("removed emmit");      
+      if (flag) {        
         let reply : ConsumeMessage = {
           content : Buffer.from(JSON.stringify({"success": false, msg:"timeout error"})), 
           fields: null,

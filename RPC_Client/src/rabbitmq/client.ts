@@ -9,7 +9,6 @@ class RabbitMQClient {
 
   private static instance: RabbitMQClient;
   private isInitialized = false;
-
   private producer: Producer;
   private consumer: Consumer;
   private connection: Connection;
@@ -76,10 +75,7 @@ class RabbitMQClient {
       await this.initialize();
     }
     return await this.producer.produceMessages(data);
-  }
-
-  
-  
+  }  
 }
 
 export default RabbitMQClient.getInstance();
